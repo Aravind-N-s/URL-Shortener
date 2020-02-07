@@ -1,0 +1,38 @@
+{
+  "name": "aiyo-labs-url",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "nodemon": "nodemon index.js",
+    "dev": "concurrently \"nodemon index.js\" \" npm start --prefix=client\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aravind-n-s/aiyo-labs-url.git"
+  },
+  "author": "aravind-n-s",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aravind-n-s/aiyo-labs-url/issues"
+  },
+  "homepage": "https://github.com/aravind-n-s/aiyo-labs-url#readme",
+  "dependencies": {
+    "concurrently": "^4.1.2",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "http-status-codes": "^1.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "lodash.template": "^4.5.0",
+    "mongoose": "^5.8.11",
+    "mongoose-unique-validator": "^2.0.3",
+    "shorthash": "0.0.2",
+    "validator": "^11.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
