@@ -22,7 +22,7 @@ export const startAddUser = () => {
 };
 
 export const addUser = user => {
-  return { type: "SET_US", payload: user };
+  return { type: "SET_USER", payload: user };
 };
 
 export const resetUser = () => {
