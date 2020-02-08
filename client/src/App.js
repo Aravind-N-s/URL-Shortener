@@ -19,7 +19,7 @@ class App extends React.Component {
   }
   render(props) {
     const {user} = this.props 
-    console.log({user})
+    // console.log({user})
     return (
       <Fragment>
         {user.loggedIn ? (

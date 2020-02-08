@@ -1,10 +1,39 @@
+/** User Controller
+ * @module api/controllers
+ */
+
+/**
+ * @namespace urlController
+ */
 require("dotenv").config();
+/**
+ * Mongoose Model for User.
+ * @const
+ */
+const { ShortenedURL } = require("../models/urlSchema");
+/**
+ * An implementation of JSON Web Tokens in Node.JS.
+ * @const
+ */
+const jwt = require("jsonwebtoken");
 const { logger, crashLogger } = require("./config/logger");
 const express = require("express");
 const router = express.Router();
+/**
+ * Constants enumerating the HTTP status codes.
+ * @const
+ */
 const HttpStatus = require("http-status-codes");
-const { ShortenedURL } = require("../models/urlSchema");
-const jwt = require("jsonwebtoken");
+
+/**
+ * Controller to handle Truecaller Login and Register
+ * @name shorten
+ * @function
+ * @memberof module:api/controllers~urlController
+ * @inner
+ * @param {Object} request - Request Object
+ * @param {Object} response - Response Object
+ */
 module.exports.shorten = async (req, res) => {
   logger.context(req.params.route);
   const { body } = req;
@@ -34,6 +63,15 @@ module.exports.shorten = async (req, res) => {
   }
 };
 
+/**
+ * Controller to handle Truecaller Login and Register
+ * @name chart
+ * @function
+ * @memberof module:api/controllers~urlController
+ * @inner
+ * @param {Object} request - Request Object
+ * @param {Object} response - Response Object
+ */
 module.exports.chart = (req, res) => {
   logger.context(req.params.route);
   const token = req.header("Authorization");
@@ -69,6 +107,15 @@ module.exports.chart = (req, res) => {
   });
 };
 
+/**
+ * Controller to handle Truecaller Login and Register
+ * @name unShort
+ * @function
+ * @memberof module:api/controllers~urlController
+ * @inner
+ * @param {Object} request - Request Object
+ * @param {Object} response - Response Object
+ */
 module.exports.unShort = async (req, res) => {
   logger.context(req.params.route);
   const { hashed_url, city, location, ipAddress, ipType } = req.body;

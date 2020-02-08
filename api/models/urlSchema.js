@@ -1,4 +1,4 @@
-/** User Schema
+/** URL Schema
  * @module api/models
  */
 
@@ -110,7 +110,7 @@ shortenedURLSchema.pre("save", function(next) {
 /**
  * Plugin to validate uniqueness of email
  */
-shortenedURLSchema.plugin(uniqueValidator, { message: "User Already Exists" });
+shortenedURLSchema.plugin(uniqueValidator, { message: "URL Already Exists" });
 
 const ShortenedURL = mongoose.model("shortenedURL", shortenedURLSchema);
 
@@ -118,8 +118,8 @@ module.exports = { ShortenedURL };
 
 /**
  * @typedef {Object} shortenedURLsSchema
- * @property {String} original_url - First Name of User
- * @property {String} hashed_url - Last Name of User
+ * @property {String} original_url - original url by user
+ * @property {String} hashed_url - hashed url to/from User
  * @property {Array} city - List of city names
  * @property {Array} location - List of latitude and longitude
  * @property {Array} ipType - List of residential or buisness visits

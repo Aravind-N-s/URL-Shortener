@@ -1,4 +1,4 @@
-/** Express router providing user related routes
+/** Express router providing url related routes
  * @module config/routes
  */
 
@@ -7,7 +7,7 @@
  */
 
 /**
- * Express router to mount user related functions on.
+ * Express router to mount url related functions on.
  * @const
  */
 const router = express.Router()
