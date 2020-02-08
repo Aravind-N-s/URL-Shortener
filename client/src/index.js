@@ -16,7 +16,7 @@ if (localStorage.getItem("userAuthToken")) {
 const jsx = (
   <BrowserRouter>
     <Provider store={store}>
-      <App />
+      <App token={localStorage.getItem("userAuthToken")}/>
     </Provider>
   </BrowserRouter>
 );

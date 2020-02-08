@@ -9,7 +9,7 @@ const Footer = props => {
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text" id="basic-addon3">
-                https://
+                URL
               </span>
             </div>
             <input

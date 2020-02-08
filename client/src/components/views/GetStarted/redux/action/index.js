@@ -9,6 +9,7 @@ export const startAddUser = () => {
         }
       })
       .then(response => {
+        console.log({response})
         if (response.data.hasOwnProperty("errors")) {
           alert(response.data.message);
         } else {
@@ -22,9 +23,16 @@ export const startAddUser = () => {
 };
 
 export const addUser = user => {
-  return { type: "SET_USER", payload: user };
+  return { 
+    type: "SET_USER"
+  };
 };
 
+export const setToken = () => {
+  return {
+    type:"SET_TOKEN"
+  }
+}
 export const resetUser = () => {
   return { type: "RESET_USER" };
 };

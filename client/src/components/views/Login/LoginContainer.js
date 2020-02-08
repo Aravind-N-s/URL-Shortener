@@ -2,6 +2,8 @@ import React, { Component, Fragment } from "react";
 import { authAxios } from "../../utils/axios";
 // import {isValid} from '../../utils/service'
 import Form from "./Form";
+import { connect } from "react-redux";
+import {setToken} from '../GetStarted/redux/action'
 import {Header} from '../../utils/header'
 class LoginContainer extends Component {
   constructor(props) {
@@ -22,19 +24,9 @@ class LoginContainer extends Component {
   handleRegister = () => {
     this.props.history.push('/users/register')
   }
-  handleSubmit = e => {
-    // const { email, password } = this.state;
-    // const emailError = isValid("email", email);
-    // const passwordNotEnteredError=isValid("fieldLength", password)
-
-    // this.setState({
-    //   emailError,
-    //   passwordNotEnteredError
-    // });
-    // this.props.history.push("/users/login");
-    // if (emailError || passwordNotEnteredError) return;
-    // console.log({emailError,passwordNotEnteredError})
-    
+  handleSubmit = (e,props) => {
+    console.log(this.props,'pros')
+    const {dispatch} = this.props
     e.preventDefault();
     const formData = {
       email: this.state.email,
@@ -48,6 +40,7 @@ class LoginContainer extends Component {
         } else {
           const token = response.data.token;
           if (token) {
+            dispatch(setToken())
             localStorage.setItem("userAuthToken", token);
             alert("Welcome to the App");
             this.props.history.push("/homepage");
@@ -73,4 +66,4 @@ class LoginContainer extends Component {
   }
 }
 
-export default LoginContainer
+export default connect()(LoginContainer)

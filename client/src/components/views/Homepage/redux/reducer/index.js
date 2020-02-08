@@ -1,6 +1,5 @@
-
-const urlReducer = (state = [], action) => {
-  console.log({action},'url')
+const initialState=[]
+const urlReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_URL": {
       return [...action.payload];

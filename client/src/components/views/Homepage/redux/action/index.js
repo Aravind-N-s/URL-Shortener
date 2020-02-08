@@ -1,10 +1,10 @@
-import {urlAxios} from '../../../../utils/axios'
+import { urlAxios } from "../../../../utils/axios";
 export const startAddURL = () => {
   return dispatch => {
     urlAxios
       .get("shortservices/chartAllURL", {
         headers: {
-          "Authorization": `${localStorage.getItem("userAuthToken")}`
+          Authorization: `${localStorage.getItem("userAuthToken")}`
         }
       })
       .then(response => {
@@ -21,7 +21,10 @@ export const startAddURL = () => {
 };
 
 export const addURL = data => {
-  return { type: "SET_URL", payload: data };
+  return {
+    type: "SET_URL",
+    payload: data
+  };
 };
 
 export const resetURL = () => {

@@ -1,21 +1,73 @@
-require('dotenv').config()
-const mongoose =  require('./config/database')
-const express = require('express')
-const cors = require('cors')
-const router = require('./config/routes')
+/** Express Server
+ * @module server/app
+ */
 
-const app = express()
-app.use(express.json())
-app.use(cors())
+/**
+ * @namespace appServer
+ */
+/**
+ * Importing environmental variables
+ */
+require("dotenv").config();
+/**
+ * Importing mongoose connection
+ */
+const mongoose = require("./config/database");
+/**
+ * Express is a Node.js web application framework
+ * @const
+ */
+const express = require("express");
+/**
+ * CORS is a Node.JS package for providing a Connect/Express middleware that can be used to enable CORS
+ * @const
+ */
+const cors = require("cors");
+/**
+ * Node.JS path module
+ * @const
+ */
+const router = require("./config/routes");
+const { logger } = require("./config/logger");
+const app = express();
+app.use(express.json());
 
-const port = process.env.PORT
+/**
+ * Cross Origin Resource Sharing (CORS) allows us to use Web applications within browsers when domains aren't the same
+ * @function
+ * @name use
+ * @memberof module:server/app~appServer
+ * @inner
+ * @param {method} cors - Enable cors in our application
+ */
+app.use(cors());
 
-app.get('/', (req, res) => {
-    res.send('Welcome to url-shortner')
-})
+const port = process.env.PORT;
 
-app.use('/shortservices', router)
+/**
+ * Serving Routes
+ * @function
+ * @name get
+ * @memberof module:server/app~appServer
+ * @inner
+ * @param {string} root - Root Route
+ * @param {object} router - Express Router
+ */
+app.get("/", (req, res) => {
+  res.send("Welcome to url-shortner");
+});
+
+/**
+ * Serving Routes
+ * @function
+ * @name use
+ * @memberof module:server/app~appServer
+ * @inner
+ * @param {string} root - Root Route
+ * @param {object} router - Express Router
+ */
+app.use("/shortservices", router);
 
 app.listen(port, () => {
-    console.log('Connected at Port:',port)
-})
+  logger.info("Connected at Port:", port);
+});
