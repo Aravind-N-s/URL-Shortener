@@ -1,4 +1,4 @@
-/** User Controller
+/** Url Controller
  * @module api/controllers
  */
 
@@ -7,7 +7,7 @@
  */
 require("dotenv").config();
 /**
- * Mongoose Model for User.
+ * Mongoose Model for Url.
  * @const
  */
 const { ShortenedURL } = require("../models/urlSchema");
