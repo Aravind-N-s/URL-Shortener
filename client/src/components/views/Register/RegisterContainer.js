@@ -2,13 +2,17 @@ import React, { Component, Fragment } from "react";
 import { authAxios } from "../../utils/axios";
 import Form from "./Form";
 import {Header} from '../../utils/header'
+import {isValid} from '../../utils/service'
 class RegisterContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username:"",
       email: "",
-      password: ""
+      password: "",
+      usernameError:"",
+      emailError: "",
+      passwordError: "",
     };
   }
 
@@ -19,11 +23,21 @@ class RegisterContainer extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const { username,email, password} = this.state;
+    const emailError = isValid("email", email);
+    const passwordError = isValid("fields", password);
+    const usernameError = isValid("fields", username);
+    this.setState({
+      emailError,
+      passwordError,
+      usernameError
+    });
     const formData = {
       username: this.state.username,
       email: this.state.email,
       password: this.state.password
     };
+    if (usernameError || emailError || passwordError) return;
     authAxios
       .post(`/user/register`, formData)
       .then(response => {

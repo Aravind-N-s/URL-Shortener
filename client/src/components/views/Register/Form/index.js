@@ -2,7 +2,7 @@ import React from "react";
 
 const Form = props => {
   const {onHandleChange, onHandleSubmit, data} = props
-  const {username,email, password} = data
+  const {username,email, password,usernameError,emailError, passwordError} = data
   return (
     <form>
       <div className="form-group">
@@ -15,6 +15,13 @@ const Form = props => {
           value={username} 
           onChange={onHandleChange}
         />
+        {usernameError ? (
+          <h4 className="form-text text-muted">
+            password cannot be empty
+          </h4>
+        ) : (
+          null
+        )}
         <label>Email address</label>
         <input
           type="email"
@@ -24,9 +31,15 @@ const Form = props => {
           value={email} 
           onChange={onHandleChange}
         />
-        <small id="emailHelp" className="form-text text-muted">
-          We'll never share your email with anyone else.
-        </small>
+        {emailError ? (
+          <h4 id="emailHelp" className="form-text text-muted">
+            Please check email format
+          </h4>
+        ) : (
+          <small className="form-text text-muted">
+            We'll never share your email with anyone else.
+          </small>
+        )}
       </div>
       <div className="form-group">
         <label>Password</label>
@@ -38,12 +51,13 @@ const Form = props => {
           value={password} 
           onChange={onHandleChange}
         />
-      </div>
-      <div className="form-check">
-        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-        <label className="form-check-label">
-          Check me out
-        </label>
+        {passwordError ? (
+          <h4 className="form-text text-muted">
+            password cannot be empty
+          </h4>
+        ) : (
+          null
+        )}
       </div>
       <button onClick={onHandleSubmit} type="submit" className="btn btn-primary">
         Submit

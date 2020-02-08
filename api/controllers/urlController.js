@@ -16,7 +16,7 @@ const { ShortenedURL } = require("../models/urlSchema");
  * @const
  */
 const jwt = require("jsonwebtoken");
-const { logger, crashLogger } = require("./config/logger");
+const { logger, crashLogger } = require("../../config/logger");
 const express = require("express");
 const router = express.Router();
 /**
@@ -35,7 +35,7 @@ const HttpStatus = require("http-status-codes");
  * @param {Object} response - Response Object
  */
 module.exports.shorten = async (req, res) => {
-  logger.context(req.params.route);
+  logger.addContext('route',req.params.route);
   const { body } = req;
   const { original_url } = body;
   const URL = await ShortenedURL.findOne({ original_url });
@@ -73,7 +73,7 @@ module.exports.shorten = async (req, res) => {
  * @param {Object} response - Response Object
  */
 module.exports.chart = (req, res) => {
-  logger.context(req.params.route);
+  logger.addContext('route',req.params.route);
   const token = req.header("Authorization");
   /**
    * Function to verify user token.
@@ -117,7 +117,7 @@ module.exports.chart = (req, res) => {
  * @param {Object} response - Response Object
  */
 module.exports.unShort = async (req, res) => {
-  logger.context(req.params.route);
+  logger.addContext('route',req.params.route);
   const { hashed_url, city, location, ipAddress, ipType } = req.body;
   const trackingTime = Date.now();
   const returnURL = await ShortenedURL.findOneAndUpdate(

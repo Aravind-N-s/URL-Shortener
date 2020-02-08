@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { authAxios } from "../../utils/axios";
-// import {isValid} from '../../utils/service'
+import {isValid} from '../../utils/service'
 import Form from "./Form";
 import { connect } from "react-redux";
 import {setToken} from '../GetStarted/redux/action'
@@ -12,7 +12,7 @@ class LoginContainer extends Component {
       email: "",
       password: "",
       emailError:"",
-      passwordNotEnteredError:""
+      passwordError:""
     };
   }
 
@@ -24,14 +24,21 @@ class LoginContainer extends Component {
   handleRegister = () => {
     this.props.history.push('/users/register')
   }
-  handleSubmit = (e,props) => {
-    console.log(this.props,'pros')
-    const {dispatch} = this.props
+  handleSubmit = (e) => {
     e.preventDefault();
+    const {dispatch} = this.props
+    const { email, password} = this.state;
+    const emailError = isValid("email", email);
+    const passwordError = isValid("fields", password);
+    this.setState({
+      emailError,
+      passwordError
+    });
     const formData = {
       email: this.state.email,
       password: this.state.password
     };
+    if (emailError || passwordError) return;
     authAxios
       .post(`/user/login`, formData)
       .then(response => {

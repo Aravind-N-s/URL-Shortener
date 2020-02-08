@@ -3,7 +3,6 @@ import { Radar } from "react-chartjs-2";
 
 export const RadarGraph = props => {
   const counts = {};
-  console.log(props.data)
   const { city } = props.data;
   city.forEach(x => {
     counts[x] = (counts[x] || 0) + 1;

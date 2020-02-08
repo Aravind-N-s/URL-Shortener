@@ -43,7 +43,7 @@ log4js.configure({
       type: "stdout",
       layout: {
         type: "pattern",
-        pattern: "%d{yyyy-MM-dd hh:mm:ss.SSS} %p %c %m"
+        pattern: "%d{yyyy-MM-dd hh:mm:ss.SSS} %p %c %m %z %X{route}"
       }
     },
 
@@ -68,7 +68,7 @@ log4js.configure({
   },
   categories: {
     default: { appenders: ["file", "logstash"], level: "info" },
-    crash: { appenders: ["crash", "logstash"], level: "fatal" },
+    crash: { appenders: ["crash", "logstash"], level: "warn" },
     console: { appenders: ["console"], level: "info" }
   }
 });

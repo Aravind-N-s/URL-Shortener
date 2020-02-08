@@ -5,17 +5,16 @@
 /**
  * @namespace urlRouter
  */
-
+ /**
+ * Express is a Node.js web application framework
+ * @const
+ */
+const express = require ('express')
 /**
  * Express router to mount url related functions on.
  * @const
  */
 const router = express.Router()
-/**
- * Express is a Node.js web application framework
- * @const
- */
-const express = require ('express')
 /**
  * Controller Methods responsible for url creation and retrival
  * @const

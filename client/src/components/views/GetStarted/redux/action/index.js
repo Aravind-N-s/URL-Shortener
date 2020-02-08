@@ -9,7 +9,6 @@ export const startAddUser = () => {
         }
       })
       .then(response => {
-        console.log({response})
         if (response.data.hasOwnProperty("errors")) {
           alert(response.data.message);
         } else {
@@ -17,7 +16,7 @@ export const startAddUser = () => {
         }
       })
       .catch(err => {
-        console.log(err);
+        alert(err.message);
       });
   };
 };

@@ -15,7 +15,7 @@ export const startAddURL = () => {
         }
       })
       .catch(err => {
-        console.log(err);
+        alert(err);
       });
   };
 };
