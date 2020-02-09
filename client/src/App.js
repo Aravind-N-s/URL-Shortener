@@ -1,7 +1,6 @@
 import React, {Fragment} from "react";
 import { connect } from "react-redux";
-import {withRouter, Redirect} from 'react-router'
-import _ from "lodash";
+import {withRouter} from 'react-router'
 import { Switch, Route} from "react-router-dom";
 import GetStartedContainer from "./components/views/GetStarted/GetStartedContainer";
 import LoginContainer from "./components/views/Login/LoginContainer";

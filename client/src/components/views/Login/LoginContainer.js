@@ -5,6 +5,7 @@ import Form from "./Form";
 import { connect } from "react-redux";
 import { setToken } from "../GetStarted/redux/action";
 import { Header } from "../../utils/header";
+import { startAddURL } from "../Homepage/redux/action";
 class LoginContainer extends Component {
   constructor(props) {
     super(props);
@@ -49,6 +50,7 @@ class LoginContainer extends Component {
           if (token) {
             dispatch(setToken());
             localStorage.setItem("userAuthToken", token);
+            dispatch(startAddURL());
             alert("Welcome to the App");
             this.props.history.push("/homepage");
           }
