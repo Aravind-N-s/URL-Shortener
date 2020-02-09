@@ -34,6 +34,8 @@ const router = require("./config/routes");
 */
 const { logger, consoleLogger } = require("./config/logger");
 const app = express();
+const path = require("path")
+
 app.use(express.json());
 
 /**
@@ -71,6 +73,14 @@ app.get("/", (req, res) => {
  * @param {object} router - Express Router
  */
 app.use("/shortservices", router);
+
+
+app.use(express.static(path.join(__dirname,"client/build")))
+
+app.get("*", (req,res) =>{
+    res.sendFile(path.join(__dirname + "/client/build/index.html"))
+})
+
 
 app.listen(port, () => {
   consoleLogger.info("Connected at Port:", port);
