@@ -16,8 +16,8 @@ const Form = props => {
           onChange={onHandleChange}
         />
         {usernameError ? (
-          <h4 className="form-text text-muted">
-            password cannot be empty
+          <h4 className="form-text text-danger">
+            User Name cannot be Empty
           </h4>
         ) : (
           <br></br>
@@ -32,7 +32,7 @@ const Form = props => {
           onChange={onHandleChange}
         />
         {emailError ? (
-          <h4 id="emailHelp" className="form-text text-muted">
+          <h4 className="form-text text-danger">
             Please check email format
           </h4>
         ) : (
@@ -52,8 +52,8 @@ const Form = props => {
           onChange={onHandleChange}
         />
         {passwordError ? (
-          <h4 className="form-text text-muted">
-            password cannot be empty
+          <h4 className="form-text text-danger">
+            Password cannot be empty
           </h4>
         ) : (
           null

@@ -29,8 +29,8 @@ const Footer = props => {
           </div>
         </form>
         {value.urlError ? (
-              <small id="emailHelp" className="form-text text-muted">
-                Please check url format
+              <small className="form-text text-danger">
+                Please enter a valid url format
               </small>
             ) : (
              null
