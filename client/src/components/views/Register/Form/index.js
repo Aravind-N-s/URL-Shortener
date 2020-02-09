@@ -20,7 +20,7 @@ const Form = props => {
             password cannot be empty
           </h4>
         ) : (
-          null
+          <br></br>
         )}
         <label>Email address</label>
         <input

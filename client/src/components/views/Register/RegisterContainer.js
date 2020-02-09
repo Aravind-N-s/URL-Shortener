@@ -1,18 +1,19 @@
 import React, { Component, Fragment } from "react";
 import { authAxios } from "../../utils/axios";
 import Form from "./Form";
-import {Header} from '../../utils/header'
-import {isValid} from '../../utils/service'
+import { Header } from "../../utils/header";
+import { isValid } from "../../utils/service";
+import { withRouter } from "react-router-dom";
 class RegisterContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username:"",
+      username: "",
       email: "",
       password: "",
-      usernameError:"",
+      usernameError: "",
       emailError: "",
-      passwordError: "",
+      passwordError: ""
     };
   }
 
@@ -23,7 +24,7 @@ class RegisterContainer extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { username,email, password} = this.state;
+    const { username, email, password } = this.state;
     const emailError = isValid("email", email);
     const passwordError = isValid("fields", password);
     const usernameError = isValid("fields", username);
@@ -58,15 +59,21 @@ class RegisterContainer extends Component {
   render() {
     return (
       <Fragment>
-        <Header name={'Register'}/>
-        <Form
-          onHandleSubmit={this.handleSubmit}
-          onHandleChange={this.handleChange}
-          data={this.state}
+        <Header
+          name={"Register"}
+          handleBlur={() => this.props.history.push("/users/login")}
+          context={this}
         />
+        <div className="container" style={{ padding: "10%" }}>
+          <Form
+            onHandleSubmit={this.handleSubmit}
+            onHandleChange={this.handleChange}
+            data={this.state}
+          />
+        </div>
       </Fragment>
     );
   }
 }
 
-export default RegisterContainer;
+export default withRouter(RegisterContainer);

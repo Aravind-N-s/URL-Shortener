@@ -28,7 +28,7 @@ const cors = require("cors");
  * @const
  */
 const router = require("./config/routes");
-const { logger } = require("./config/logger");
+const { logger, consoleLogger } = require("./config/logger");
 const app = express();
 app.use(express.json());
 
@@ -69,5 +69,5 @@ app.get("/", (req, res) => {
 app.use("/shortservices", router);
 
 app.listen(port, () => {
-  logger.info("Connected at Port:", port);
+  consoleLogger.info("Connected at Port:", port);
 });

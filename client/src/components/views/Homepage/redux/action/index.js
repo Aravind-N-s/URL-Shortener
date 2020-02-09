@@ -11,7 +11,7 @@ export const startAddURL = () => {
         if (response.data.hasOwnProperty("errors")) {
           alert(response.data.message);
         } else {
-          dispatch(addURL(response.data));
+          dispatch(addURL(response.data.shortenedURLs));
         }
       })
       .catch(err => {

@@ -16,7 +16,7 @@ const mongoose = require("mongoose");
 * Reuiring Loggers
 * @const
 */
-const { logger, crashLogger } = require("./logger");
+const { logger, consoleLogger, crashLogger } = require("./logger");
 mongoose.Promise = global.Promise;
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useFindAndModify', false);
@@ -41,7 +41,7 @@ const CONNECTION_URI = process.env.MONGO_URI;
 mongoose
   .connect(CONNECTION_URI, options)
   .then(res => {
-    logger.info("Connected to db: aiyo-labs-url");
+    consoleLogger.info("Connected to db: aiyo-labs-url");
   })
   .catch(err => {
     crashLogger.fatal("error connecting db...");

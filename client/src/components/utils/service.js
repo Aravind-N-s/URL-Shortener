@@ -19,5 +19,6 @@ export const isValid = (field, value) => {
         return true;                                       
       }
     }
+    default : {return true}
   }
 };

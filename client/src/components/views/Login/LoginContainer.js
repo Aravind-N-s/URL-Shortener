@@ -1,18 +1,18 @@
 import React, { Component, Fragment } from "react";
 import { authAxios } from "../../utils/axios";
-import {isValid} from '../../utils/service'
+import { isValid } from "../../utils/service";
 import Form from "./Form";
 import { connect } from "react-redux";
-import {setToken} from '../GetStarted/redux/action'
-import {Header} from '../../utils/header'
+import { setToken } from "../GetStarted/redux/action";
+import { Header } from "../../utils/header";
 class LoginContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
       password: "",
-      emailError:"",
-      passwordError:""
+      emailError: false,
+      passwordError: false
     };
   }
 
@@ -22,12 +22,12 @@ class LoginContainer extends Component {
   };
 
   handleRegister = () => {
-    this.props.history.push('/users/register')
-  }
-  handleSubmit = (e) => {
+    this.props.history.push("/users/register");
+  };
+  handleSubmit = e => {
     e.preventDefault();
-    const {dispatch} = this.props
-    const { email, password} = this.state;
+    const { dispatch } = this.props;
+    const { email, password } = this.state;
     const emailError = isValid("email", email);
     const passwordError = isValid("fields", password);
     this.setState({
@@ -47,7 +47,7 @@ class LoginContainer extends Component {
         } else {
           const token = response.data.token;
           if (token) {
-            dispatch(setToken())
+            dispatch(setToken());
             localStorage.setItem("userAuthToken", token);
             alert("Welcome to the App");
             this.props.history.push("/homepage");
@@ -61,16 +61,22 @@ class LoginContainer extends Component {
   render() {
     return (
       <Fragment>
-        <Header name={'Login'}/>
-        <Form
-          onHandleSubmit={this.handleSubmit}
-          onHandleChange={this.handleChange}
-          handleRegister = {this.handleRegister}
-          data={this.state}
+        <Header
+          name={"Login"}
+          handleBlur={this.handleRegister}
+          context={this}
         />
+        <div className="container" style={{padding:'10%'}}>
+          <Form
+            onHandleSubmit={this.handleSubmit}
+            onHandleChange={this.handleChange}
+            handleRegister={this.handleRegister}
+            data={this.state}
+          />
+        </div>
       </Fragment>
     );
   }
 }
 
-export default connect()(LoginContainer)
+export default connect()(LoginContainer);

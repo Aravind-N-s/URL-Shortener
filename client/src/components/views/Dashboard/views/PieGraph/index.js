@@ -15,7 +15,7 @@ export const PieGraph = props => {
         labels: label,
         datasets: [
           {
-            label: "# Users per device",
+            label: "# Users by Ip Address",
             data: data
           }
         ]

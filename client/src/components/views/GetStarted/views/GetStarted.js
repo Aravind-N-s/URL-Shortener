@@ -15,17 +15,26 @@ const Getstarted = props => {
             <input
               type="text"
               className="form-control"
-              name='hash'
+              name="hash"
               value={value.hash}
               onChange={onHandleChange}
             />
             <div className="input-group-append">
-              <button onClick={onHandleUnshorten} className="btn btn-primary" type="button">
+              <button
+                onClick={onHandleUnshorten}
+                className="btn btn-primary"
+                type="button"
+              >
                 Unshort
               </button>
             </div>
           </div>
         </form>
+        {value.hashError ? (
+          <small id="emailHelp" className="form-text text-muted">
+            Please check url format
+          </small>
+        ) : null}
       </div>
     </Fragment>
   );

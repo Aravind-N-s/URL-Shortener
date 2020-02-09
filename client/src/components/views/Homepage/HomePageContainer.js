@@ -3,17 +3,18 @@ import { connect } from "react-redux";
 import Homepage from "./views/HomePage";
 import { Header } from "../../utils/header";
 import { Bar } from "react-chartjs-2";
-import {resetUser} from '../GetStarted/redux/action'
+import { withRouter } from "react-router-dom";
+import { resetUser } from "../GetStarted/redux/action";
 class HomePageContainer extends Component {
-  handleUserLogout = (props) => {
-    const {dispatch} = this.props
-    const logout = window.confirm("Do You Want To Logout")
-    if(logout){
-      localStorage.removeItem('userAuthToken')
-      dispatch(resetUser())
-      this.props.history.push('/url')
+  handleUserLogout = props => {
+    const { dispatch } = this.props;
+    const logout = window.confirm("Do You Want To Logout");
+    if (logout) {
+      localStorage.removeItem("userAuthToken");
+      dispatch(resetUser());
+      this.props.history.push("/url");
     }
-  }
+  };
   render() {
     const { url } = this.props;
     let labels;
@@ -29,30 +30,35 @@ class HomePageContainer extends Component {
     return (
       <Fragment>
         <Header
-          name={
-            <div onClick={() => this.handleUserLogout()}>
-              <h1>HomePage</h1>
-            </div>
-          }
+          logout={this.handleUserLogout}
+          name={"HomePage"}
+          context={this}
         />
-        <div style={{ display: "grid", padding: '50px',gridGap: '10px' }}>
-          <div style={{ gridColoumn: "1", gridRow: "1/2", border:'1' }}>
-            <Homepage url={url} />
-          </div>
-          <div style={{ width: '900px', gridColoumn: "1", gridRow: "1/2",border:'1'}}>
-            <Bar
-              data={{
-                labels: labels,
-                datasets: [
-                  {
-                    label: "# Users per Link",
-                    backgroundColor: "rgb(255, 100, 132)",
-                    borderColor: "rgb(255, 100, 132)",
-                    data: data
-                  }
-                ]
-              }}
-            />
+        <div
+          className="container"
+          style={{ display: "grid", padding: "50px", gridGap: "10px" }}
+        >
+          <div className="row">
+            <div className="col-sm-3" style={{border:'1'}}>
+              <Homepage url={url} />
+            </div>
+            <div
+              className="col-sm-9"
+            >
+              <Bar
+                data={{
+                  labels: labels,
+                  datasets: [
+                    {
+                      label: "# Users per Link",
+                      backgroundColor: "rgb(255, 100, 132)",
+                      borderColor: "rgb(255, 100, 132)",
+                      data: data
+                    }
+                  ]
+                }}
+              />
+            </div>
           </div>
         </div>
       </Fragment>
@@ -65,4 +71,4 @@ const mapStateToProps = state => {
     url: state.url
   };
 };
-export default connect(mapStateToProps)(HomePageContainer);
+export default withRouter(connect(mapStateToProps)(HomePageContainer));

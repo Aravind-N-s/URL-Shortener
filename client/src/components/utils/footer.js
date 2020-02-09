@@ -28,6 +28,13 @@ const Footer = props => {
             </div>
           </div>
         </form>
+        {value.urlError ? (
+              <small id="emailHelp" className="form-text text-muted">
+                Please check url format
+              </small>
+            ) : (
+             null
+            )}
       </div>
     </Fragment>
   );

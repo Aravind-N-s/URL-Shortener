@@ -8,11 +8,7 @@ class DashBoardContainer extends Component {
     return (
       <Fragment>
         <Header
-          name={
-            <div onClick={() => this.props.history.push("/homepage")}>
-              <h6>{original_url}</h6>
-            </div>
-          }
+          name={original_url} context={this}
         />
         <Dashboard url={this.props.url}/>
       </Fragment>

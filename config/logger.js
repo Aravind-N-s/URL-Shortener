@@ -43,7 +43,7 @@ log4js.configure({
       type: "stdout",
       layout: {
         type: "pattern",
-        pattern: "%d{yyyy-MM-dd hh:mm:ss.SSS} %p %c %m %z %X{route}"
+        pattern: "%d{yyyy-MM-dd hh:mm:ss.SSS} %p %c %m %z"
       }
     },
 

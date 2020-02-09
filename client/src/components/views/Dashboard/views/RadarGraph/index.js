@@ -10,12 +10,13 @@ export const RadarGraph = props => {
   const label = Object.keys(counts);
   const data = Object.values(counts)
   return (
+    
     <Radar
       data={{
         labels: label,
         datasets: [
           {
-            label: "# Users per device",
+            label: "# Users per City",
             data: data
           }
         ]

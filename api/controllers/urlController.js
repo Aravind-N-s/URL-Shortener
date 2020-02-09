@@ -35,7 +35,8 @@ const HttpStatus = require("http-status-codes");
  * @param {Object} response - Response Object
  */
 module.exports.shorten = async (req, res) => {
-  logger.addContext('route',req.params.route);
+  logger.addContext('route',req.route.path);
+  crashLogger.addContext('route',req.route.path);
   const { body } = req;
   const { original_url } = body;
   const URL = await ShortenedURL.findOne({ original_url });
@@ -73,7 +74,8 @@ module.exports.shorten = async (req, res) => {
  * @param {Object} response - Response Object
  */
 module.exports.chart = (req, res) => {
-  logger.addContext('route',req.params.route);
+  logger.addContext('route',req.route.path);
+  crashLogger.addContext('route',req.route.path);
   const token = req.header("Authorization");
   /**
    * Function to verify user token.
@@ -85,7 +87,7 @@ module.exports.chart = (req, res) => {
    */
   jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
     if (err) {
-      logger.warn(`Json web token doesn't exist`);
+      crashLogger.warn(`Json web token doesn't exist ${err.name}`);
       return res
         .status(HttpStatus.FORBIDDEN)
         .json({ message: "Token Invalid" });
@@ -117,8 +119,9 @@ module.exports.chart = (req, res) => {
  * @param {Object} response - Response Object
  */
 module.exports.unShort = async (req, res) => {
-  logger.addContext('route',req.params.route);
   const { hashed_url, city, location, ipAddress, ipType } = req.body;
+  logger.addContext('route',req.route.path);
+  crashLogger.addContext('route',req.route.path);
   const trackingTime = Date.now();
   const returnURL = await ShortenedURL.findOneAndUpdate(
     { hashed_url },
@@ -131,7 +134,7 @@ module.exports.unShort = async (req, res) => {
       .status(HttpStatus.OK)
       .json({ original_url, message: "Original URL Successfully Retrieved." });
   } else {
-    crashLogger.error(err);
+    crashLogger.error("Invalid Code Was Asked");
     return res.status(HttpStatus.FORBIDDEN).json({ message: "Invalid Codes" });
   }
 };

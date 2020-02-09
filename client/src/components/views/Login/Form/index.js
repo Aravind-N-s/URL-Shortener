@@ -53,13 +53,6 @@ const Form = props => {
       >
         Submit
       </button>
-      <button
-        onClick={handleRegister}
-        type="submit"
-        className="btn btn-primary"
-      >
-        Reg
-      </button>
     </form>
   );
 };

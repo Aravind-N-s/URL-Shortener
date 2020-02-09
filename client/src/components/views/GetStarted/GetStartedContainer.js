@@ -4,6 +4,7 @@ import Getstarted from "./views/GetStarted";
 import { urlAxios } from "../../utils/axios";
 import axios from "axios";
 import { Header } from "../../utils/header";
+import {isValid} from '../../utils/service'
 class GetStartedContainer extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +16,8 @@ class GetStartedContainer extends Component {
       lon: "",
       ipType: "",
       query: "",
-      hashed: false
+      hashError:false,
+      urlError: false
     };
   }
   componentDidMount() {
@@ -38,7 +40,11 @@ class GetStartedContainer extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
+    const { url } = this.state;
     const formData = { original_url: this.state.url };
+    const urlError = isValid("url", url);
+    this.setState({urlError});
+    if (urlError) return;
     urlAxios
       .post("/shortservices/shortenURL", formData)
       .then(response => {
@@ -60,11 +66,14 @@ class GetStartedContainer extends Component {
       location: { lat: lat, long: lon },
       ipAddress: query
     };
+    const hashError = isValid("fields", hash);
+    this.setState({hashError});
+    if (hashError) return;
     urlAxios
       .put("/shortservices/unShortenURL", formData)
       .then(response => {
         const { data } = response;
-        this.setState({ url: data.original_url, hash: "", hashed: true });
+        this.setState({ url: data.original_url, hash: "" });
       })
       .catch(err => {
         alert(err.message);
@@ -73,7 +82,7 @@ class GetStartedContainer extends Component {
   render() {
     return (
       <Fragment>
-        <Header name={<button onClick={this.handleBlur}>TestiT</button>} />
+        <Header name={'URL SHORT'} handleBlur={this.handleBlur}/>
         <div>
           <Getstarted
             onHandleUnshorten={this.handleUnshorten}
