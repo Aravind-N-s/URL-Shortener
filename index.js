@@ -28,6 +28,10 @@ const cors = require("cors");
  * @const
  */
 const router = require("./config/routes");
+/**
+* Reuiring Loggers
+* @const
+*/
 const { logger, consoleLogger } = require("./config/logger");
 const app = express();
 app.use(express.json());

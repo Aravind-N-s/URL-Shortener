@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "nodemon": "nodemon index.js",
+    "doc": "jsdoc -c ./.jsdoc.conf.json",
     "dev": "concurrently \"nodemon index.js\" \" npm start --prefix=client\" "
   },
   "repository": {
@@ -25,6 +26,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "http-status-codes": "^1.4.0",
+    "jsdocs": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "lodash.template": "^4.5.0",
@@ -35,6 +37,7 @@
     "validator": "^11.1.0"
   },
   "devDependencies": {
+    "jsdoc": "^3.6.3",
     "nodemon": "^2.0.2"
   }
 }

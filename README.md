@@ -15,6 +15,10 @@ npm install
 ```npm
 npm run dev
 ```
+##### To view API Documentation, Make Sure the .jsdoc config file exists then run the following command
+```npm
+npm run doc
+```
 #### Project Timeline
 - Friday - User Auth Services was fixed and hosted at [url](https://auth-services-aden.herokuapp.com/) crude backend of URL Shortner was created, with login and register screen, 
 - Saturday - URL backend was linked with backend and graphs were created. JSdocs, Loggers, Kibana was intergrated with the url backend service
