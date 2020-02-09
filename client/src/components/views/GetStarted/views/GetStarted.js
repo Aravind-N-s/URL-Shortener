@@ -32,7 +32,7 @@ const Getstarted = props => {
         </form>
         {value.hashError ? (
           <small id="emailHelp" className="form-text text-muted">
-            Please check url format
+            Please enter an short code format
           </small>
         ) : null}
       </div>
