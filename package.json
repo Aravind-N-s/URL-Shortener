@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/aravind-n-s/aiyo-labs-url#readme",
   "dependencies": {
-    "@log4js-node/logstash-http": "^1.0.0",
+    "@log4js-node/logstash-http": "^1.1.0",
     "concurrently": "^4.1.2",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -29,10 +29,10 @@
     "http-status-codes": "^1.4.0",
     "jsdocs": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "lodash.template": "^4.5.0",
     "log4js": "^6.1.1",
-    "mongoose": "^5.8.11",
+    "mongoose": "^5.12.5",
     "mongoose-unique-validator": "^2.0.3",
     "shorthash": "0.0.2",
     "validator": "^11.1.0"
