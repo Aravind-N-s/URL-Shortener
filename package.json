@@ -31,7 +31,7 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "lodash.template": "^4.5.0",
-    "log4js": "^6.3.0",
+    "log4js": "^6.4.0",
     "mongoose": "^5.13.13",
     "mongoose-unique-validator": "^2.0.3",
     "shorthash": "0.0.2",
